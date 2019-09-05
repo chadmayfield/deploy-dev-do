@@ -1,0 +1,22 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - shell: ls
+      register: ls_result
+    - debug: var=ls_result.stdout_lines
+
+    - shell: whoami
+      register: who
+    - debug: var=who.stdout_lines
+
+# update packages
+# add additional dependencies
+# add users
+# manage sudo
+# install X???
+# install IDE
+# install go
+# install perl
+# import ssh keys???
+# clone repos

@@ -1,0 +1,701 @@
+(0) [chad@laptop:~] $ ./droplet.sh create sfo2 s-1vcpu-1gb ubuntu-18-04-x64 test1
+Deploying machine: sfo2-s-1vcpu-1gb-20190904-1209
+Bringing machine 'test1' up with 'digital_ocean' provider...
+==> test1: Using existing SSH key: Vagrant
+==> test1: Creating a new droplet...
+==> test1: Assigned IP address: 167.71.147.218
+==> test1: Creating user account: chad...
+==> test1: Rsyncing folder: /Users/chad/digitalocean/deployments/sfo2-s-1vcpu-1gb-20190904-1209/ => /vagrant
+==> test1:   - Exclude: [".vagrant/", ".git/.gitignore.vscode"]
+==> test1: Running provisioner: shell...
+    test1: Running: /var/folders/mh/zj515z4x1xx162j7s5yh42cr0000gn/T/vagrant-shell20190904-77322-1awd6vj.sh
+    test1: Beginning provisioning on root@test1
+    test1: Get:1 http://mirrors.digitalocean.com/ubuntu bionic InRelease [242 kB]
+    test1: Get:2 http://mirrors.digitalocean.com/ubuntu bionic-updates InRelease [88.7 kB]
+    test1: Get:3 http://mirrors.digitalocean.com/ubuntu bionic-backports InRelease [74.6 kB]
+    test1: Get:4 http://mirrors.digitalocean.com/ubuntu bionic/universe amd64 Packages [8570 kB]
+    test1: Get:5 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+    test1: Get:6 http://mirrors.digitalocean.com/ubuntu bionic/universe Translation-en [4941 kB]
+    test1: Get:7 http://mirrors.digitalocean.com/ubuntu bionic/multiverse amd64 Packages [151 kB]
+    test1: Get:8 http://mirrors.digitalocean.com/ubuntu bionic/multiverse Translation-en [108 kB]
+    test1: Get:9 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 Packages [722 kB]
+    test1: Get:10 http://mirrors.digitalocean.com/ubuntu bionic-updates/main Translation-en [262 kB]
+    test1: Get:11 http://mirrors.digitalocean.com/ubuntu bionic-updates/restricted amd64 Packages [13.1 kB]
+    test1: Get:12 http://mirrors.digitalocean.com/ubuntu bionic-updates/restricted Translation-en [4448 B]
+    test1: Get:13 http://mirrors.digitalocean.com/ubuntu bionic-updates/universe amd64 Packages [1003 kB]
+    test1: Get:14 http://mirrors.digitalocean.com/ubuntu bionic-updates/universe Translation-en [308 kB]
+    test1: Get:15 http://mirrors.digitalocean.com/ubuntu bionic-updates/multiverse amd64 Packages [7308 B]
+    test1: Get:16 http://mirrors.digitalocean.com/ubuntu bionic-updates/multiverse Translation-en [3836 B]
+    test1: Get:17 http://mirrors.digitalocean.com/ubuntu bionic-backports/main amd64 Packages [2512 B]
+    test1: Get:18 http://mirrors.digitalocean.com/ubuntu bionic-backports/main Translation-en [1644 B]
+    test1: Get:19 http://mirrors.digitalocean.com/ubuntu bionic-backports/universe amd64 Packages [4000 B]
+    test1: Get:20 http://mirrors.digitalocean.com/ubuntu bionic-backports/universe Translation-en [1856 B]
+    test1: Get:21 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [497 kB]
+    test1: Get:22 http://security.ubuntu.com/ubuntu bionic-security/main Translation-en [169 kB]
+    test1: Get:23 http://security.ubuntu.com/ubuntu bionic-security/restricted amd64 Packages [6296 B]
+    test1: Get:24 http://security.ubuntu.com/ubuntu bionic-security/restricted Translation-en [2776 B]
+    test1: Get:25 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 Packages [604 kB]
+    test1: Get:26 http://security.ubuntu.com/ubuntu bionic-security/universe Translation-en [201 kB]
+    test1: Get:27 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 Packages [4688 B]
+    test1: Get:28 http://security.ubuntu.com/ubuntu bionic-security/multiverse Translation-en [2356 B]
+    test1: Fetched 18.1 MB in 6s (3027 kB/s)
+    test1: Reading package lists...
+    test1: Reading package lists...
+    test1: Building dependency tree...
+    test1: Reading state information...
+    test1: Calculating upgrade...
+    test1: The following package was automatically installed and is no longer required:
+    test1:   grub-pc-bin
+    test1: Use 'sudo apt autoremove' to remove it.
+    test1: The following packages have been kept back:
+    test1:   linux-headers-generic linux-headers-virtual linux-image-virtual
+    test1:   linux-virtual
+    test1: The following packages will be upgraded:
+    test1:   bind9-host bsdutils dnsutils dpkg fdisk libbind9-160 libblkid1
+    test1:   libdns-export1100 libdns1100 libfdisk1 libirs160 libisc-export169 libisc169
+    test1:   libisccc160 libisccfg160 libldap-2.4-2 libldap-common liblwres160 libmount1
+    test1:   libnss-systemd libpam-systemd libprocps6 libsmartcols1 libsystemd0 libudev1
+    test1:   libuuid1 libzstd1 mount procps python3-software-properties snapd
+    test1:   software-properties-common systemd systemd-sysv udev util-linux uuid-runtime
+    test1:   xkb-data
+    test1: 38 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+    test1: Need to get 24.1 MB of archives.
+    test1: After this operation, 1011 kB of additional disk space will be used.
+    test1: Get:1 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 bsdutils amd64 1:2.31.1-0.4ubuntu3.4 [60.3 kB]
+    test1: Get:2 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 dpkg amd64 1.19.0.5ubuntu2.2 [1136 kB]
+    test1: Get:3 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libuuid1 amd64 2.31.1-0.4ubuntu3.4 [20.0 kB]
+    test1: Get:4 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libblkid1 amd64 2.31.1-0.4ubuntu3.4 [124 kB]
+    test1: Get:5 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libfdisk1 amd64 2.31.1-0.4ubuntu3.4 [164 kB]
+    test1: Get:6 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libmount1 amd64 2.31.1-0.4ubuntu3.4 [136 kB]
+    test1: Get:7 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libsmartcols1 amd64 2.31.1-0.4ubuntu3.4 [83.7 kB]
+    test1: Get:8 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 fdisk amd64 2.31.1-0.4ubuntu3.4 [108 kB]
+    test1: Get:9 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 util-linux amd64 2.31.1-0.4ubuntu3.4 [902 kB]
+    test1: Get:10 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libnss-systemd amd64 237-3ubuntu10.28 [105 kB]
+    test1: Get:11 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libsystemd0 amd64 237-3ubuntu10.28 [204 kB]
+    test1: Get:12 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libpam-systemd amd64 237-3ubuntu10.28 [108 kB]
+    test1: Get:13 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 systemd amd64 237-3ubuntu10.28 [2902 kB]
+    test1: Get:14 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 udev amd64 237-3ubuntu10.28 [1101 kB]
+    test1: Get:15 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libudev1 amd64 237-3ubuntu10.28 [53.9 kB]
+    test1: Get:16 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libprocps6 amd64 2:3.3.12-3ubuntu1.2 [31.8 kB]
+    test1: Get:17 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 procps amd64 2:3.3.12-3ubuntu1.2 [225 kB]
+    test1: Get:18 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 systemd-sysv amd64 237-3ubuntu10.28 [11.8 kB]
+    test1: Get:19 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 mount amd64 2.31.1-0.4ubuntu3.4 [107 kB]
+    test1: Get:20 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 uuid-runtime amd64 2.31.1-0.4ubuntu3.4 [34.8 kB]
+    test1: Get:21 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libzstd1 amd64 1.3.3+dfsg-2ubuntu1.1 [189 kB]
+    test1: Get:22 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libisc-export169 amd64 1:9.11.3+dfsg-1ubuntu1.9 [164 kB]
+    test1: Get:23 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libdns-export1100 amd64 1:9.11.3+dfsg-1ubuntu1.9 [749 kB]
+    test1: Get:24 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 xkb-data all 2.23.1-1ubuntu1.18.04.1 [325 kB]
+    test1: Get:25 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 dnsutils amd64 1:9.11.3+dfsg-1ubuntu1.9 [145 kB]
+    test1: Get:26 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 bind9-host amd64 1:9.11.3+dfsg-1ubuntu1.9 [53.6 kB]
+    test1: Get:27 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libbind9-160 amd64 1:9.11.3+dfsg-1ubuntu1.9 [27.6 kB]
+    test1: Get:28 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libisccfg160 amd64 1:9.11.3+dfsg-1ubuntu1.9 [48.5 kB]
+    test1: Get:29 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libisccc160 amd64 1:9.11.3+dfsg-1ubuntu1.9 [17.9 kB]
+    test1: Get:30 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libirs160 amd64 1:9.11.3+dfsg-1ubuntu1.9 [19.1 kB]
+    test1: Get:31 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libdns1100 amd64 1:9.11.3+dfsg-1ubuntu1.9 [965 kB]
+    test1: Get:32 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libisc169 amd64 1:9.11.3+dfsg-1ubuntu1.9 [238 kB]
+    test1: Get:33 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 liblwres160 amd64 1:9.11.3+dfsg-1ubuntu1.9 [34.8 kB]
+    test1: Get:34 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libldap-common all 2.4.45+dfsg-1ubuntu1.4 [16.9 kB]
+    test1: Get:35 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 libldap-2.4-2 amd64 2.4.45+dfsg-1ubuntu1.4 [155 kB]
+    test1: Get:36 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 software-properties-common all 0.96.24.32.11 [9996 B]
+    test1: Get:37 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 python3-software-properties all 0.96.24.32.11 [23.6 kB]
+    test1: Get:38 http://mirrors.digitalocean.com/ubuntu bionic-updates/main amd64 snapd amd64 2.40+18.04 [13.3 MB]
+    test1: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+    test1: Fetched 24.1 MB in 1s (23.1 MB/s)
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59994 files and directories currently installed.)
+    test1: Preparing to unpack .../bsdutils_1%3a2.31.1-0.4ubuntu3.4_amd64.deb ...
+    test1: Unpacking bsdutils (1:2.31.1-0.4ubuntu3.4) over (1:2.31.1-0.4ubuntu3.3) ...
+    test1: Setting up bsdutils (1:2.31.1-0.4ubuntu3.4) ...
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59994 files and directories currently installed.)
+    test1: Preparing to unpack .../dpkg_1.19.0.5ubuntu2.2_amd64.deb ...
+    test1: Unpacking dpkg (1.19.0.5ubuntu2.2) over (1.19.0.5ubuntu2.1) ...
+    test1: Setting up dpkg (1.19.0.5ubuntu2.2) ...
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59994 files and directories currently installed.)
+    test1: Preparing to unpack .../libuuid1_2.31.1-0.4ubuntu3.4_amd64.deb ...
+    test1: Unpacking libuuid1:amd64 (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
+    test1: Setting up libuuid1:amd64 (2.31.1-0.4ubuntu3.4) ...
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59994 files and directories currently installed.)
+    test1: Preparing to unpack .../libblkid1_2.31.1-0.4ubuntu3.4_amd64.deb ...
+    test1: Unpacking libblkid1:amd64 (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
+    test1: Setting up libblkid1:amd64 (2.31.1-0.4ubuntu3.4) ...
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59994 files and directories currently installed.)
+    test1: Preparing to unpack .../libfdisk1_2.31.1-0.4ubuntu3.4_amd64.deb ...
+    test1: Unpacking libfdisk1:amd64 (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
+    test1: Setting up libfdisk1:amd64 (2.31.1-0.4ubuntu3.4) ...
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59994 files and directories currently installed.)
+    test1: Preparing to unpack .../libmount1_2.31.1-0.4ubuntu3.4_amd64.deb ...
+    test1: Unpacking libmount1:amd64 (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
+    test1: Setting up libmount1:amd64 (2.31.1-0.4ubuntu3.4) ...
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59994 files and directories currently installed.)
+    test1: Preparing to unpack .../libsmartcols1_2.31.1-0.4ubuntu3.4_amd64.deb ...
+    test1: Unpacking libsmartcols1:amd64 (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
+    test1: Setting up libsmartcols1:amd64 (2.31.1-0.4ubuntu3.4) ...
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59994 files and directories currently installed.)
+    test1: Preparing to unpack .../fdisk_2.31.1-0.4ubuntu3.4_amd64.deb ...
+    test1: Unpacking fdisk (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
+    test1: Setting up fdisk (2.31.1-0.4ubuntu3.4) ...
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59994 files and directories currently installed.)
+    test1: Preparing to unpack .../util-linux_2.31.1-0.4ubuntu3.4_amd64.deb ...
+    test1: Unpacking util-linux (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
+    test1: Setting up util-linux (2.31.1-0.4ubuntu3.4) ...
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59994 files and directories currently installed.)
+    test1: Preparing to unpack .../libnss-systemd_237-3ubuntu10.28_amd64.deb ...
+    test1: Unpacking libnss-systemd:amd64 (237-3ubuntu10.28) over (237-3ubuntu10.25) ...
+    test1: Preparing to unpack .../libsystemd0_237-3ubuntu10.28_amd64.deb ...
+    test1: Unpacking libsystemd0:amd64 (237-3ubuntu10.28) over (237-3ubuntu10.25) ...
+    test1: Setting up libsystemd0:amd64 (237-3ubuntu10.28) ...
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59994 files and directories currently installed.)
+    test1: Preparing to unpack .../libpam-systemd_237-3ubuntu10.28_amd64.deb ...
+    test1: Unpacking libpam-systemd:amd64 (237-3ubuntu10.28) over (237-3ubuntu10.25) ...
+    test1: Preparing to unpack .../systemd_237-3ubuntu10.28_amd64.deb ...
+    test1: Unpacking systemd (237-3ubuntu10.28) over (237-3ubuntu10.25) ...
+    test1: Preparing to unpack .../udev_237-3ubuntu10.28_amd64.deb ...
+    test1: Unpacking udev (237-3ubuntu10.28) over (237-3ubuntu10.25) ...
+    test1: Preparing to unpack .../libudev1_237-3ubuntu10.28_amd64.deb ...
+    test1: Unpacking libudev1:amd64 (237-3ubuntu10.28) over (237-3ubuntu10.25) ...
+    test1: Setting up libudev1:amd64 (237-3ubuntu10.28) ...
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59994 files and directories currently installed.)
+    test1: Preparing to unpack .../libprocps6_2%3a3.3.12-3ubuntu1.2_amd64.deb ...
+    test1: Unpacking libprocps6:amd64 (2:3.3.12-3ubuntu1.2) over (2:3.3.12-3ubuntu1.1) ...
+    test1: Preparing to unpack .../procps_2%3a3.3.12-3ubuntu1.2_amd64.deb ...
+    test1: Unpacking procps (2:3.3.12-3ubuntu1.2) over (2:3.3.12-3ubuntu1.1) ...
+    test1: Setting up libprocps6:amd64 (2:3.3.12-3ubuntu1.2) ...
+    test1: Setting up procps (2:3.3.12-3ubuntu1.2) ...
+    test1: Setting up systemd (237-3ubuntu10.28) ...
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59994 files and directories currently installed.)
+    test1: Preparing to unpack .../systemd-sysv_237-3ubuntu10.28_amd64.deb ...
+    test1: Unpacking systemd-sysv (237-3ubuntu10.28) over (237-3ubuntu10.25) ...
+    test1: Preparing to unpack .../mount_2.31.1-0.4ubuntu3.4_amd64.deb ...
+    test1: Unpacking mount (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
+    test1: Preparing to unpack .../uuid-runtime_2.31.1-0.4ubuntu3.4_amd64.deb ...
+    test1: Unpacking uuid-runtime (2.31.1-0.4ubuntu3.4) over (2.31.1-0.4ubuntu3.3) ...
+    test1: Preparing to unpack .../libzstd1_1.3.3+dfsg-2ubuntu1.1_amd64.deb ...
+    test1: Unpacking libzstd1:amd64 (1.3.3+dfsg-2ubuntu1.1) over (1.3.3+dfsg-2ubuntu1) ...
+    test1: Setting up libzstd1:amd64 (1.3.3+dfsg-2ubuntu1.1) ...
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59994 files and directories currently installed.)
+    test1: Preparing to unpack .../00-libisc-export169_1%3a9.11.3+dfsg-1ubuntu1.9_amd64.deb ...
+    test1: Unpacking libisc-export169:amd64 (1:9.11.3+dfsg-1ubuntu1.9) over (1:9.11.3+dfsg-1ubuntu1.8) ...
+    test1: Preparing to unpack .../01-libdns-export1100_1%3a9.11.3+dfsg-1ubuntu1.9_amd64.deb ...
+    test1: Unpacking libdns-export1100 (1:9.11.3+dfsg-1ubuntu1.9) over (1:9.11.3+dfsg-1ubuntu1.8) ...
+    test1: Preparing to unpack .../02-xkb-data_2.23.1-1ubuntu1.18.04.1_all.deb ...
+    test1: Unpacking xkb-data (2.23.1-1ubuntu1.18.04.1) over (2.23.1-1ubuntu1) ...
+    test1: Preparing to unpack .../03-dnsutils_1%3a9.11.3+dfsg-1ubuntu1.9_amd64.deb ...
+    test1: Unpacking dnsutils (1:9.11.3+dfsg-1ubuntu1.9) over (1:9.11.3+dfsg-1ubuntu1.8) ...
+    test1: Preparing to unpack .../04-bind9-host_1%3a9.11.3+dfsg-1ubuntu1.9_amd64.deb ...
+    test1: Unpacking bind9-host (1:9.11.3+dfsg-1ubuntu1.9) over (1:9.11.3+dfsg-1ubuntu1.8) ...
+    test1: Preparing to unpack .../05-libbind9-160_1%3a9.11.3+dfsg-1ubuntu1.9_amd64.deb ...
+    test1: Unpacking libbind9-160:amd64 (1:9.11.3+dfsg-1ubuntu1.9) over (1:9.11.3+dfsg-1ubuntu1.8) ...
+    test1: Preparing to unpack .../06-libisccfg160_1%3a9.11.3+dfsg-1ubuntu1.9_amd64.deb ...
+    test1: Unpacking libisccfg160:amd64 (1:9.11.3+dfsg-1ubuntu1.9) over (1:9.11.3+dfsg-1ubuntu1.8) ...
+    test1: Preparing to unpack .../07-libisccc160_1%3a9.11.3+dfsg-1ubuntu1.9_amd64.deb ...
+    test1: Unpacking libisccc160:amd64 (1:9.11.3+dfsg-1ubuntu1.9) over (1:9.11.3+dfsg-1ubuntu1.8) ...
+    test1: Preparing to unpack .../08-libirs160_1%3a9.11.3+dfsg-1ubuntu1.9_amd64.deb ...
+    test1: Unpacking libirs160:amd64 (1:9.11.3+dfsg-1ubuntu1.9) over (1:9.11.3+dfsg-1ubuntu1.8) ...
+    test1: Preparing to unpack .../09-libdns1100_1%3a9.11.3+dfsg-1ubuntu1.9_amd64.deb ...
+    test1: Unpacking libdns1100:amd64 (1:9.11.3+dfsg-1ubuntu1.9) over (1:9.11.3+dfsg-1ubuntu1.8) ...
+    test1: Preparing to unpack .../10-libisc169_1%3a9.11.3+dfsg-1ubuntu1.9_amd64.deb ...
+    test1: Unpacking libisc169:amd64 (1:9.11.3+dfsg-1ubuntu1.9) over (1:9.11.3+dfsg-1ubuntu1.8) ...
+    test1: Preparing to unpack .../11-liblwres160_1%3a9.11.3+dfsg-1ubuntu1.9_amd64.deb ...
+    test1: Unpacking liblwres160:amd64 (1:9.11.3+dfsg-1ubuntu1.9) over (1:9.11.3+dfsg-1ubuntu1.8) ...
+    test1: Preparing to unpack .../12-libldap-common_2.4.45+dfsg-1ubuntu1.4_all.deb ...
+    test1: Unpacking libldap-common (2.4.45+dfsg-1ubuntu1.4) over (2.4.45+dfsg-1ubuntu1.3) ...
+    test1: Preparing to unpack .../13-libldap-2.4-2_2.4.45+dfsg-1ubuntu1.4_amd64.deb ...
+    test1: Unpacking libldap-2.4-2:amd64 (2.4.45+dfsg-1ubuntu1.4) over (2.4.45+dfsg-1ubuntu1.3) ...
+    test1: Preparing to unpack .../14-software-properties-common_0.96.24.32.11_all.deb ...
+    test1: Unpacking software-properties-common (0.96.24.32.11) over (0.96.24.32.9) ...
+    test1: Preparing to unpack .../15-python3-software-properties_0.96.24.32.11_all.deb ...
+    test1: Unpacking python3-software-properties (0.96.24.32.11) over (0.96.24.32.9) ...
+    test1: Preparing to unpack .../16-snapd_2.40+18.04_amd64.deb ...
+    test1: Unpacking snapd (2.40+18.04) over (2.39.2+18.04) ...
+    test1: Setting up libisc169:amd64 (1:9.11.3+dfsg-1ubuntu1.9) ...
+    test1: Setting up libnss-systemd:amd64 (237-3ubuntu10.28) ...
+    test1: Setting up libisccc160:amd64 (1:9.11.3+dfsg-1ubuntu1.9) ...
+    test1: Setting up libldap-common (2.4.45+dfsg-1ubuntu1.4) ...
+    test1: Setting up libisc-export169:amd64 (1:9.11.3+dfsg-1ubuntu1.9) ...
+    test1: Setting up systemd-sysv (237-3ubuntu10.28) ...
+    test1: Setting up xkb-data (2.23.1-1ubuntu1.18.04.1) ...
+    test1: Setting up mount (2.31.1-0.4ubuntu3.4) ...
+    test1: Setting up uuid-runtime (2.31.1-0.4ubuntu3.4) ...
+    test1: Setting up udev (237-3ubuntu10.28) ...
+    test1: update-initramfs: deferring update (trigger activated)
+    test1: Setting up libldap-2.4-2:amd64 (2.4.45+dfsg-1ubuntu1.4) ...
+    test1: Setting up libdns-export1100 (1:9.11.3+dfsg-1ubuntu1.9) ...
+    test1: Setting up python3-software-properties (0.96.24.32.11) ...
+    test1: Setting up libdns1100:amd64 (1:9.11.3+dfsg-1ubuntu1.9) ...
+    test1: Setting up liblwres160:amd64 (1:9.11.3+dfsg-1ubuntu1.9) ...
+    test1: Setting up software-properties-common (0.96.24.32.11) ...
+    test1: Setting up libpam-systemd:amd64 (237-3ubuntu10.28) ...
+    test1: Setting up libisccfg160:amd64 (1:9.11.3+dfsg-1ubuntu1.9) ...
+    test1: Setting up snapd (2.40+18.04) ...
+    test1: Installing new version of config file /etc/apparmor.d/usr.lib.snapd.snap-confine.real ...
+    test1: md5sum: 
+    test1: /etc/apparmor.d/usr.lib.snapd.snap-confine
+    test1: : No such file or directory
+    test1: snapd.failure.service is a disabled or a static unit, not starting it.
+    test1: snapd.snap-repair.service is a disabled or a static unit, not starting it.
+    test1: Setting up libirs160:amd64 (1:9.11.3+dfsg-1ubuntu1.9) ...
+    test1: Setting up libbind9-160:amd64 (1:9.11.3+dfsg-1ubuntu1.9) ...
+    test1: Setting up bind9-host (1:9.11.3+dfsg-1ubuntu1.9) ...
+    test1: Setting up dnsutils (1:9.11.3+dfsg-1ubuntu1.9) ...
+    test1: Processing triggers for systemd (237-3ubuntu10.28) ...
+    test1: Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+    test1: Processing triggers for dbus (1.12.2-1ubuntu1.1) ...
+    test1: Processing triggers for mime-support (3.60ubuntu1) ...
+    test1: Processing triggers for ureadahead (0.100.0-21) ...
+    test1: Processing triggers for libc-bin (2.27-3ubuntu1) ...
+    test1: Processing triggers for initramfs-tools (0.130ubuntu3.8) ...
+    test1: update-initramfs: Generating /boot/initrd.img-4.15.0-58-generic
+    test1: Reading package lists...
+    test1: Building dependency tree...
+    test1: Reading state information...
+    test1: The following packages will be REMOVED:
+    test1:   grub-pc-bin
+    test1: 0 upgraded, 0 newly installed, 1 to remove and 4 not upgraded.
+    test1: After this operation, 2987 kB disk space will be freed.
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59994 files and directories currently installed.)
+    test1: Removing grub-pc-bin (2.02-2ubuntu8.13) ...
+    test1: Cleaning up old sources...OK
+    test1: Verifying machine compatability...OK
+    test1: Verifying compatability with script...
+    test1: OK
+    test1: Installing apt repository...
+    test1: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+    test1: Selecting previously unselected package apt-transport-https.
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59696 files and directories currently installed.)
+    test1: Preparing to unpack .../apt-transport-https_1.6.11_all.deb ...
+    test1: Unpacking apt-transport-https (1.6.11) ...
+    test1: Selecting previously unselected package gnupg2.
+    test1: Preparing to unpack .../gnupg2_2.2.4-1ubuntu1.2_all.deb ...
+    test1: Unpacking gnupg2 (2.2.4-1ubuntu1.2) ...
+    test1: Setting up apt-transport-https (1.6.11) ...
+    test1: Setting up gnupg2 (2.2.4-1ubuntu1.2) ...
+    test1: Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+    test1: Installing gpg key...
+    test1: Warning: apt-key output should not be parsed (stdout is not a terminal)
+    test1: OK
+    test1: dpkg-preconfigure: unable to re-open stdin: No such file or directory
+    test1: Selecting previously unselected package do-agent.
+    test1: (Reading database ... 
+    test1: (Reading database ... 5%
+    test1: (Reading database ... 10%
+    test1: (Reading database ... 15%
+    test1: (Reading database ... 20%
+    test1: (Reading database ... 25%
+    test1: (Reading database ... 30%
+    test1: (Reading database ... 35%
+    test1: (Reading database ... 40%
+    test1: (Reading database ... 45%
+    test1: (Reading database ... 50%
+    test1: (Reading database ... 55%
+    test1: (Reading database ... 60%
+    test1: (Reading database ... 65%
+    test1: (Reading database ... 70%
+    test1: (Reading database ... 75%
+    test1: (Reading database ... 80%
+    test1: (Reading database ... 85%
+    test1: (Reading database ... 90%
+    test1: (Reading database ... 95%
+    test1: (Reading database ... 100%
+    test1: (Reading database ... 
+    test1: 59707 files and directories currently installed.)
+    test1: Preparing to unpack .../do-agent_3.5.6_amd64.deb ...
+    test1: Unpacking do-agent (3.5.6) ...
+    test1: Setting up do-agent (3.5.6) ...
+    test1: Detecting SELinux
+    test1: SELinux not enforced
+    test1: userdel: user 'do-agent' does not exist
+    test1: enable systemd service
+    test1: Created symlink /etc/systemd/system/multi-user.target.wants/do-agent.service → /etc/systemd/system/do-agent.service.
+    test1: Processing triggers for ureadahead (0.100.0-21) ...
+==> test1: Running provisioner: ansible_local...
+    test1: Installing Ansible...
+Vagrant has automatically selected the compatibility mode '2.0'
+according to the Ansible version installed (2.8.4).
+
+Alternatively, the compatibility mode can be specified in your Vagrantfile:
+https://www.vagrantup.com/docs/provisioning/ansible_common.html#compatibility_mode
+
+    test1: Running ansible-playbook...
+
+PLAY [all] *********************************************************************
+
+TASK [shell] *******************************************************************
+changed: [test1]
+
+TASK [debug] *******************************************************************
+ok: [test1] => {
+    "ls_result.stdout_lines": [
+        "ansible.cfg", 
+        "group_vars", 
+        "playbook.yaml", 
+        "roles"
+    ]
+}
+
+TASK [shell] *******************************************************************
+changed: [test1]
+
+TASK [debug] *******************************************************************
+ok: [test1] => {
+    "who.stdout_lines": [
+        "root"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+test1                      : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+==> test1: Running action triggers after up ...
+==> test1: Running trigger: Finished Message...
+==> test1: Machine is up!

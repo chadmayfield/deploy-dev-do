@@ -1,0 +1,26 @@
+# keep vagrant out of it
+.vagrant
+# keep deployments private
+deployments/*
+# but still keep the directory
+!deployments/.gitkeep 
+
+# vim temp history
+# http://stackoverflow.com/a/9850662
+.netrwhist
+
+# linux temp files
+*~
+
+# macos temp files
+._*
+Icon?
+.Trash*
+.DS_Store
+.DS_Store?
+*/.DS_Store
+.Spotlight-V100
+
+# windows temp files
+Thumbs.db
+ehthumbs.db

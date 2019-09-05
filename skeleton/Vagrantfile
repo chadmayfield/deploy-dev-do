@@ -1,0 +1,71 @@
+# Vagrantfile - digitalocean Vagrantfile skeleton
+
+# author  : Chad Mayfield (chad@chd.my)
+# license : gplv3
+
+# replace path to ssh private key
+KEY = "~/.ssh/hosting/digitalocean/id_ed25519"
+
+# override locale
+ENV["LC_ALL"] = "en_US.UTF-8"
+
+Vagrant.configure("2") do |config|
+  # https://www.vagrantup.com/docs/vagrantfile/vagrant_settings.html
+  config.vagrant.plugins = {"vagrant-digitalocean" => {"version" => "0.9.3"}}
+  config.vm.define "DROPLET_NAME" do |droplet|
+    droplet.vm.provider :digital_ocean do |provider, override|
+      override.ssh.private_key_path = KEY
+      override.vm.box = 'digital_ocean'
+      override.vm.box_url = "https://github.com/devopsgroup-io/vagrant-digitalocean/raw/master/box/digital_ocean.box"
+      #override.vm.box_url = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"
+      #override.vm.allowed_synced_folder_types = :rsync
+      override.nfs.functional = false
+      provider.token = ENV['DO_KEY']
+      provider.image = 'DROPLET_DISTRO'
+      provider.region = 'DROPLET_REGION'
+      provider.size = 'DROPLET_SIZE'
+    end
+
+    config.ssh.username = ENV['USER']
+    config.ssh.private_key_path = KEY
+    config.vm.synced_folder ".", "/vagrant", type: "rsync",
+      rsync__exclude: ".git/" ".gitignore" ".vscode"
+
+    # sample provisioning script using shell
+    #config.vm.provision "shell",
+    #  inline: "echo BEGINNING PROVISIONING RUN..."
+    config.vm.provision :shell, :path => 'scripts/provison.sh'
+
+    # install ansible and run playbook
+    config.vm.provision "ansible_local" do |ansible|
+      ansible.playbook = "provisioning/playbook.yaml"
+      ansible.install = true
+      ansible.install_mode = "default"
+      ansible.compatibility_mode = "auto" # also avail 1.8 or 2.0
+      #ansible.verbose = true
+      ansible.limit = "all" # or only "nodes" group, etc.
+      #ansible.inventory_path = "provisioning/inventory"
+      ansible.config_file = "provisioning/ansible.cfg"
+      ansible.extra_vars = {
+        ntp_server: "clock.xmission.com"
+      }
+    end
+
+    # sample tigger after up
+    config.trigger.after :up do |trigger|
+      trigger.name = "Finished Message"
+      trigger.info = "Machine is up!"
+    end
+
+    # sample trigger on destroy
+    config.trigger.before :destroy do |trigger|
+      trigger.warn = "Dumping db to /vagrant/outfile"
+      #trigger.run_remote = {inline: "/vagrant/scripts/destroy.sh"}
+      #trigger.on_error = :continue
+      trigger.ruby do |env,machine|
+        greetings = "goodbye #{machine.id}!"
+        puts greetings
+      end
+    end
+  end
+end
