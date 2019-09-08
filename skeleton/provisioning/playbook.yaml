@@ -1,22 +1,134 @@
 ---
 - hosts: all
-  gather_facts: no
+  sudo: yes
+  #gather_facts: no
+  vars:
+    whoami: "{{ lookup('env','USER') }}"
   tasks:
-    - shell: ls
-      register: ls_result
-    - debug: var=ls_result.stdout_lines
+    # https://docs.ansible.com/ansible/latest/modules/yum_module.html
+    - name: Update Red Hat based systems
+      yum: >
+        update_cache=yes
+        name=*
+        state=latest
+        update_cache=yes
+      when: >
+        ansible_distribution == 'CentOS'
+        or
+        ansible_distribution == 'RedHat'
 
-    - shell: whoami
-      register: who
-    - debug: var=who.stdout_lines
+    # https://docs.ansible.com/ansible/latest/modules/apt_module.html
+    - name: Update Debian based systems
+      apt: >
+        update_cache=yes
+        cache_valid_time=1200
+        upgrade=dist
+      when: >
+        ansible_distribution == 'Debian'
+        or
+        ansible_distribution == 'Ubuntu'
 
-# update packages
-# add additional dependencies
-# add users
-# manage sudo
+    - name: Remove the old do-agent package
+      yum:
+        name: do-agent
+        state: absent
+      when: >
+        ansible_distribution == 'CentOS'
+        or
+        ansible_distribution == 'RedHat'
+
+    - name: Remove the old do-agent package
+      apt:
+        name: do-agent
+        state: absent
+      when: >
+        ansible_distribution == 'Debian'
+        or
+        ansible_distribution == 'Ubuntu'
+
+    - name: Install packages via yum
+      yum:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - vim
+        - tar
+        - gzip
+        - curl
+        - wget
+        - gcc
+        - gcc-c++
+        - kernel-devel
+        - yum-utils
+        - make
+        - perl
+      when: >
+        ansible_distribution == 'CentOS'
+        or
+        ansible_distribution == 'RedHat'
+
+    - name: Install packages via apt
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - vim
+        - tar
+        - gzip
+        - curl
+        - wget
+        - build-essential
+        - linux-headers-generic
+        - manpages-dev
+        - perl
+        - software-properties-common
+        - python3-pip
+        - python3-venv
+        - libssl-dev
+        - libffi-dev
+        - python-dev
+      when: >
+        ansible_distribution == 'Debian'
+        or
+        ansible_distribution == 'Ubuntu'
+
+    - name: Remove deps no longer required
+      apt:
+        autoremove: yes
+      when: >
+        ansible_distribution == 'Debian'
+        or
+        ansible_distribution == 'Ubuntu'
+
+    - name: Download new do-agent install script
+      get_url:
+        url: https://repos.insights.digitalocean.com/install.sh
+        dest: /tmp/do-agent-install.sh
+        mode: '0770'
+
+    - name: Install new do-agent
+      command: bash /tmp/do-agent-install.sh
+
+    - name: Download latest Upgrade Go script
+      get_url:
+        url: "https://git.io/upgradego"
+        dest: /usr/local/bin/upgrade_go.sh
+        owner: "{{ whoami }}"
+        mode: 0755
+
+    - name: Download latest sysinfo.sh script
+      get_url:
+        url: "https://git.io/sysinfo.sh"
+        dest: /usr/local/bin/sysinfo.sh
+        owner: "{{ whoami }}"
+        mode: 0755
+
+
+# TODO:
+# install latest go
+# set go paths
 # install X???
 # install IDE
-# install go
-# install perl
 # import ssh keys???
 # clone repos
+# curl -o tempfile.tmp -sfL ${GITHUB_URL}/download/${VERSION}/archivename${SUFFIX}
