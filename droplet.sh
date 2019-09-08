@@ -28,13 +28,13 @@ check_jq() {
 }
 
 check_vagrant() {
-    command -v vagrant >/dev/null 2>&1 || fail "curl is not installed! (Get started: https://curl.haxx.se)"
+    command -v vagrant >/dev/null 2>&1 || fail "vagrant is not installed! (Get started: https://www.vagrantup.com)"
 }
 
 check_key() {
     # for security use API key set as env variable in .bashrc
     if [ -z ${DO_KEY+x} ]; then
-        fail "A Digital Ocean API key must be set as \$DO_KEY in your .bashrc!";
+        fail "A DigitalOcean API key must be set as \$DO_KEY in your .bashrc!";
     fi
 }
 
@@ -71,6 +71,7 @@ check_deps_create() {
     check_ssh_configd
 }
 
+# TODO: Fix these, they don't work properly
 check_args() {
     # check that we have an available region
     get_available_regions
@@ -110,6 +111,7 @@ check_args() {
         printf "No size specified, using default: %s\n" "$name"
     else
 #        if ! [[ $name =~ ^[a-zA-Z0-9-_]+$ ]]; then
+        # TODO: improve regexp
         if ! [[ $name =~ ^[[:alnum:]]+$ ]]; then
             fail "Name $name invalid! Please use only letters, numbers, dash, & underscores."
         fi
