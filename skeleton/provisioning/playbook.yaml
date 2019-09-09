@@ -5,6 +5,26 @@
   vars:
     whoami: "{{ lookup('env','USER') }}"
   tasks:
+
+#### DEBUGGING START
+    - name: Print some info
+      debug: 
+        msg: "User: '{{ whoami }}' System: '{{ ansible_distribution }}' UUID: '{{ ansible_product_uuid }}'"
+
+    - name: Verify ansible version
+      command: ansible --version
+      register: ansver
+
+    - name: Print ansible version
+      debug:
+        msg: "ansible version: {{ ansver.stdout }}"
+
+    - name: Display all variables/facts known for a host
+      debug:
+        var: hostvars[inventory_hostname]
+        verbosity: 4
+#### DEBUGGING END
+
     # https://docs.ansible.com/ansible/latest/modules/yum_module.html
     - name: Update Red Hat based systems
       yum: >
@@ -109,19 +129,44 @@
     - name: Install new do-agent
       command: bash /tmp/do-agent-install.sh
 
+    - name: Get username for first UID
+      shell: "awk -v val=1001 -F: '$3==val{print $1}' /etc/passwd"
+      register: userid
+
     - name: Download latest Upgrade Go script
       get_url:
         url: "https://git.io/upgradego"
         dest: /usr/local/bin/upgrade_go.sh
-        owner: "{{ whoami }}"
+        owner: "{{ userid.stdout }}"
         mode: 0755
 
     - name: Download latest sysinfo.sh script
       get_url:
         url: "https://git.io/sysinfo.sh"
         dest: /usr/local/bin/sysinfo.sh
-        owner: "{{ whoami }}"
+        owner: "{{ userid.stdout }}"
         mode: 0755
+
+    - name: Create code/build directories
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ userid.stdout }}"
+        group: "{{ userid.stdout }}"
+        mode: 0700
+        #mode: "u=rwx,g=rw,o=rw"
+      with_items:
+        - /data
+        - /data/code
+        - /data/build
+
+    - name: Create link to code in $HOME
+      file:
+        src: /data/code
+        dest: "/home/{{ userid.stdout }}/code"
+        owner: "{{ userid.stdout }}"
+        group: "{{ userid.stdout }}"
+        state: link
 
 
 # TODO:

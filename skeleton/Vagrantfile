@@ -63,7 +63,7 @@ Vagrant.configure("2") do |config|
       trigger.run_remote = {inline: "/vagrant/scripts/destroy.sh"}
       trigger.on_error = :continue
       trigger.ruby do |env,machine|
-        greetings = "goodbye #{machine.id}!"
+        greetings = "Destroyed hostname: #{machine.name} (#{machine.id})!"
         puts greetings
       end
     end
