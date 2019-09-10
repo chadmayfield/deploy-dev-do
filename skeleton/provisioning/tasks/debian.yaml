@@ -40,3 +40,9 @@
 - name: Remove deps no longer required
   apt:
     autoremove: yes
+
+- name: Upgrade python-pip, force upgrade
+  pip:
+    name: pip
+    executable: pip3
+    state: latest

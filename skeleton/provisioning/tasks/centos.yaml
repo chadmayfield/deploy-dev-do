@@ -36,3 +36,9 @@
     - python36-setuptools
     - python36-pip
     - python36-virtualenv
+
+- name: Upgrade python-pip, force upgrade
+  pip:
+    name: pip
+    executable: pip3
+    state: latest
