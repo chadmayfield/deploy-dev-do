@@ -1,0 +1,25 @@
+---
+- name: Create code/build directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ userid.stdout }}"
+    group: "{{ userid.stdout }}"
+    mode: 0744
+    #mode: "u=rwx,g=rw,o=rw"
+  with_items:
+    - /data
+    - /data/build
+    - /data/code
+    - /data/code/go
+    - /data/code/go/bin
+    - /data/code/go/pkg
+    - /data/code/go/src
+
+- name: Create link to code in $HOME
+  file:
+    src: /data/code
+    dest: "/home/{{ userid.stdout }}/code"
+    owner: "{{ userid.stdout }}"
+    group: "{{ userid.stdout }}"
+    state: link

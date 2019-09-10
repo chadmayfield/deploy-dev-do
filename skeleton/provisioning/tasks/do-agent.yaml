@@ -1,0 +1,9 @@
+---
+- name: Download new do-agent install script
+  get_url:
+    url: https://repos.insights.digitalocean.com/install.sh
+    dest: /tmp/do-agent-install.sh
+    mode: '0770'
+
+- name: Install new do-agent
+  command: bash /tmp/do-agent-install.sh

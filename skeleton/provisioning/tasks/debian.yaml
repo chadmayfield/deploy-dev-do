@@ -1,0 +1,42 @@
+---
+- name: Get username for first created user
+  shell: "awk -v val=1000 -F: '$3==val{print $1}' /etc/passwd"
+  register: userid
+
+# https://docs.ansible.com/ansible/latest/modules/apt_module.html
+- name: Update Debian based systems
+  apt: >
+    update_cache=yes
+    cache_valid_time=1200
+    upgrade=dist
+
+- name: Remove the old do-agent package
+  apt:
+    name: do-agent
+    state: absent
+
+- name: Install packages via apt
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - vim
+    - git
+    - tar
+    - gzip
+    - curl
+    - wget
+    - build-essential
+    - linux-headers-generic
+    - manpages-dev
+    - perl
+    - software-properties-common
+    - python3-pip
+    - python3-venv
+    - libssl-dev
+    - libffi-dev
+    - python-dev
+
+- name: Remove deps no longer required
+  apt:
+    autoremove: yes

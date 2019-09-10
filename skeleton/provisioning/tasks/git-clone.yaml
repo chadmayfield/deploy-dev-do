@@ -1,0 +1,22 @@
+---
+- name: "Clone {{ repo1 }}"
+  git:
+    repo: "{{ repo1 }}"
+    dest: "{{ target1 }}"
+    version: master
+
+- name: "Clone {{ repo2 }}"
+  git:
+    repo: "{{ repo2 }}"
+    dest: "{{ target2 }}"
+    version: master
+
+#- name: Clone private GitHub repo
+#  git:
+#    repo: "{{ repo1 }}"
+#    dest: /data/code/
+#    version: master
+#    accept_hostkey: yes
+#    key_file: "/home/{{ userid }}/.ssh/id_rsa"
+#  become: yes
+#  become_user: "{{ userid }}"

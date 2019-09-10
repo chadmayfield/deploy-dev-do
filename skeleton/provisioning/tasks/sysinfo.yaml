@@ -1,0 +1,10 @@
+---
+- name: Download latest sysinfo.sh script
+  get_url:
+    url: "https://git.io/sysinfo.sh"
+    dest: /usr/local/bin/sysinfo.sh
+    owner: "{{ userid.stdout }}"
+    mode: 0755
+
+# Download artifact
+# curl -o tempfile.tmp -sfL ${GITHUB_URL}/download/${VERSION}/archivename${SUFFIX}

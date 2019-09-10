@@ -1,0 +1,35 @@
+---
+- name: Get username for first created user
+  shell: "awk -v val=1001 -F: '$3==val{print $1}' /etc/passwd"
+  register: userid
+
+# https://docs.ansible.com/ansible/latest/modules/yum_module.html
+- name: Update Red Hat based systems
+  yum: >
+    update_cache=yes
+    name=*
+    state=latest
+    update_cache=yes
+
+- name: Remove the old do-agent package
+  yum:
+    name: do-agent
+    state: absent
+
+- name: Install packages via yum
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - vim
+    - git
+    - tar
+    - gzip
+    - curl
+    - wget
+    - gcc
+    - gcc-c++
+    - kernel-devel
+    - yum-utils
+    - make
+    - perl
