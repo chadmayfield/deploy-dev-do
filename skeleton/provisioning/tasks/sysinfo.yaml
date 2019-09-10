@@ -4,6 +4,7 @@
     url: "https://git.io/sysinfo.sh"
     dest: /usr/local/bin/sysinfo.sh
     owner: "{{ userid.stdout }}"
+    group: "{{ userid.stdout }}"
     mode: 0755
 
 # Download artifact

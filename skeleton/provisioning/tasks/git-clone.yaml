@@ -5,11 +5,27 @@
     dest: "{{ target1 }}"
     version: master
 
+- name: "Recusively chown directory {{ target1}}"
+  file:
+    path: "{{ target1 }}"
+    state: directory
+    recurse: yes
+    owner: "{{ userid.stdout }}"
+    group: "{{ userid.stdout }}"
+
 - name: "Clone {{ repo2 }}"
   git:
     repo: "{{ repo2 }}"
     dest: "{{ target2 }}"
     version: master
+
+- name: "Recusively chown directory {{ target2}}"
+  file:
+    path: "{{ target2 }}"
+    state: directory
+    recurse: yes
+    owner: "{{ userid.stdout }}"
+    group: "{{ userid.stdout }}"
 
 #- name: Clone private GitHub repo
 #  git:
@@ -20,3 +36,4 @@
 #    key_file: "/home/{{ userid }}/.ssh/id_rsa"
 #  become: yes
 #  become_user: "{{ userid }}"
+

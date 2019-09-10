@@ -1,4 +1,9 @@
 ---
+# go.yaml
+go_os: linux
+go_arch: amd64
+go_url: https://golang.org/VERSION?m=text 
+# git-clone.yaml
 repo1: https://github.com/chadmayfield/dot-files.git
 target1: /data/code/dot-files
 repo2: https://github.com/chadmayfield/scriptlets.git

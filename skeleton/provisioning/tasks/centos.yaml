@@ -33,3 +33,6 @@
     - yum-utils
     - make
     - perl
+    - python36-setuptools
+    - python36-pip
+    - python36-virtualenv

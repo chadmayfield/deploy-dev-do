@@ -1,5 +1,5 @@
 ---
-- name: Download latest Upgrade Go script
+- name: Download latest upgrade_go.sh script
   get_url:
     url: "https://git.io/upgradego"
     dest: /usr/local/bin/upgrade_go.sh
@@ -9,18 +9,30 @@
 # archive name: {{ go_version}}.{{ os_name }}-{{ arch }}.tar.gz
 - name: Get and unarchive latest go archive
   unarchive:
-    src: https://dl.google.com/go/{{ lookup('url', 'https://golang.org/VERSION?m=text', split_lines=False) }}.linux-amd64.tar.gz
+    src: https://dl.google.com/go/{{ lookup('url', "{{ go_url }}", split_lines=False) }}.{{ go_os }}-{{ go_arch }}.tar.gz
     dest: /usr/local
     remote_src: yes
 
-- name: Set GOPATH in users .bashrc 
+- name: "Set GOPATH in {{ userid.stdout }}'s .bashrc" 
   lineinfile:
     path: "/home/{{ userid.stdout }}/.bashrc"
     line: export GOPATH="/data/code/go"
     insertafter: SYSTEMD_PAGER=
 
-- name: Update $PATH with $GOROOT/bin
+- name: Set GOPATH in skel .bashrc 
+  lineinfile:
+    path: /etc/skel/.bashrc
+    line: export GOPATH="/data/code/go"
+    insertafter: SYSTEMD_PAGER=
+
+- name: "Update $PATH with $GOROOT/bin in {{ userid.stdout }}'s .bashrc"
   lineinfile:
     path: "/home/{{ userid.stdout }}/.bashrc"
+    line: export PATH="$PATH:/usr/local/go/bin"
+    insertafter: SYSTEMD_PAGER=
+
+- name: Update $PATH with $GOROOT/bin in system's skel .bashrc
+  lineinfile:
+    path: /etc/skel/.bashrc
     line: export PATH="$PATH:/usr/local/go/bin"
     insertafter: SYSTEMD_PAGER=
