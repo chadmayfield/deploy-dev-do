@@ -9,7 +9,16 @@
   tasks:
     - name: Print some info
       debug: 
-        msg: "User: '{{ whoami }}' System: '{{ ansible_distribution }}' UUID: '{{ ansible_product_uuid }}'"
+        msg:
+          - "User: {{ whoami }}"
+          - "Architecture: {{ ansible_architecture }}"
+          - "Distribution: {{ ansible_distribution }}"
+          - "Version: {{ ansible_distribution_version }}"
+          - "Release: {{ ansible_distribution_release }}"
+          - "OS Family: {{ ansible_os_family }}"
+          - "Python Version: {{ ansible_python_version }}"
+          - "UUID: {{ ansible_product_uuid }}"
+          #- "ENV: {{ ansible_env }}"
 
     #### Run specific tasks based on 'ansible_distribution' ####
     # ansible distros: https://git.io/Jeqae (in ansible/lib/ansible/module_utils/facts/system/distribution.py#L467)

@@ -45,4 +45,19 @@
     groups: docker
     append: yes
 
-# TODO: Run container hello-world, if successfull should output "Hello from Docker!"
+#- name: Install docker python module
+#  pip:
+#    name: docker
+#    executable: pip
+#    state: latest
+
+#- name: Upgrade docker-py python module
+#  pip:
+#    name: docker-py
+#    executable: pip
+#    state: latest
+
+#- name: Test pull an image
+#  docker_image:
+#    name: hello-world
+#    source: pull

@@ -15,11 +15,6 @@
     name: docker-ce
     state: latest
     
-#- name: Pull hello-world container image
-#  docker_image:
-#    name: hello-world
-#    source: pull
-
 - name: Start docker.service
   service:
     name: docker
@@ -34,4 +29,17 @@
 
 #- name: Install docker python module
 #  pip:
-#    name: docker
+#    name: docker
+#    executable: pip
+#    state: latest
+
+#- name: Upgrade docker-py python module
+#  pip:
+#    name: docker-py
+#    executable: pip
+#    state: latest
+
+#- name: Test pull an image
+#  docker_image:
+#    name: hello-world
+#    source: pull
