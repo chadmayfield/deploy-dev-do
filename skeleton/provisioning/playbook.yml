@@ -3,7 +3,7 @@
   sudo: yes
   #gather_facts: no
   vars_files:
-    - group_vars/main.yaml
+    - group_vars/main.yml
   vars:
     whoami: "{{ lookup('env','USER') }}"
   tasks:
@@ -11,61 +11,73 @@
       debug: 
         msg: "User: '{{ whoami }}' System: '{{ ansible_distribution }}' UUID: '{{ ansible_product_uuid }}'"
 
+    #### Run specific tasks based on 'ansible_distribution' ####
     # ansible distros: https://git.io/Jeqae (in ansible/lib/ansible/module_utils/facts/system/distribution.py#L467)
     # https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html#ansible-distribution
 
     - name: "Run OS specific tasks [CentOS]"
-      include_tasks: tasks/centos.yaml
+      include_tasks: tasks/update-centos.yml
       when: ansible_distribution == "CentOS" or ansible_distribution == "Fedora"
 
     - name: "Run OS specific tasks [Debian]"
-      include_tasks: tasks/debian.yaml
+      include_tasks: tasks/update-debian.yml
+      when: ansible_os_family == "Debian" or ansible_distribution == "Ubuntu"
+
+    - name: Create required directory structure
+      include_tasks: tasks/create-dirs.yml
+
+    - name: "Run tasks to install Docker [CentOS]"
+      include_tasks: tasks/install-docker-centos.yml
+      when: ansible_distribution == "CentOS" or ansible_distribution == "Fedora"
+
+    - name: "Run tasks to install Docker [Debian]"
+      include_tasks: tasks/install-docker-debian.yml
       when: ansible_os_family == "Debian" or ansible_distribution == "Ubuntu"
 
     - name: "Run OS specific tasks [CoreOS]"
-      include_tasks: tasks/coreos.yaml
+      include_tasks: tasks/coreos.yml
       when: ansible_os_family == 'CoreOS'
 
-#    # Keep these here since this playbook will be used elsewhere
 #    - name: "Run OS specific tasks [RedHat]"
-#      include_tasks: tasks/redhat.yaml
+#      include_tasks: tasks/redhat.yml
 #      when:
 #        - ansible_os_family == "RedHat"
 #        - ansible_distribution != "CentOS"
 #
 #    - name: "Run OS specific tasks [Darwin]"
-#      include_tasks: tasks/darwin.yaml
+#      include_tasks: tasks/darwin.yml
 #      when: ansible_os_family == 'Darwin'
 #
 #    - name: "Run OS specific tasks [FreeBSD]"
-#      include_tasks: tasks/freebsd.yaml
+#      include_tasks: tasks/freebsd.yml
 #      when: ansible_distribution == 'FreeBSD'
 #
 #    - name: "Run OS specific tasks [Solaris]"
-#      include_tasks: tasks/solaris.yaml
+#      include_tasks: tasks/solaris.yml
 #      when: ansible_distribution == 'Solaris'
 #
 #    - name: "Run OS specific tasks [AIX]"
-#      include_tasks: tasks/aix.yaml
+#      include_tasks: tasks/aix.yml
 #      when: ansible_distribution == 'AIX'
 #
 #    - name: "Run OS specific tasks [HP-UX]"
-#      include_tasks: tasks/hpux.yaml
+#      include_tasks: tasks/hpux.yml
 #      when: ansible_distribution == 'HP-UX'
 
+    #### Run generic tasks ####
     - name: Run tasks to install new do-agent
-      include_tasks: tasks/do-agent.yaml
-
-    - name: Run tasks to create required directories
-      include_tasks: tasks/mkdir.yaml
-
-    - name: Run tasks to download sysinfo.sh script
-      include_tasks: tasks/sysinfo.yaml
+      include_tasks: tasks/install-do-agent.yml
 
     - name: Run tasks to install latest version of Go
-      include_tasks: tasks/go.yaml
+      include_tasks: tasks/install-go.yml
+
+    - name: Run tasks to download sysinfo.sh script
+      include_tasks: tasks/pull-sysinfo.yml
 
     - name: Run tasks to clone git repos
-      include_tasks: tasks/git-clone.yaml
+      include_tasks: tasks/clone-repos.yml
+
+    - name: Run tasks to secure SSH
+      include_tasks: tasks/configure-ssh.yml
 
 #EOF

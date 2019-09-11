@@ -1,0 +1,125 @@
+---
+- name: Backup existing sshd_config
+  copy:
+    src: /etc/ssh/sshd_config
+    dest: /etc/ssh/sshd_config.ORIG
+    owner: root
+    group: root
+    mode: '0644'
+
+# secure ssh, config options mostly based on blog post;
+# https://chadmayfield.com/2016/12/05/securing-ssh-in-linux/
+
+# enable key-based auth
+- name: Enable key-based authentication
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '^(#P|P)ubkeyAuthentication .*$'
+    replace: 'PubkeyAuthentication yes'
+
+# disable interactive logins
+#- name: Disable interactive logins (Password Auth) 
+#  replace:
+#    path: "{{ sshdconfig }}"
+#    regexp: '^(#P|P)asswordAuthentication yes'
+#    replace: 'PasswordAuthentication no'
+
+#- name: Disable interactive logins (Challenge Response Auth)
+#  replace:
+#    path: "{{ sshdconfig }}"
+#    regexp: '^(#C|C)hallengeResponseAuth.* yes'
+#    replace: 'ChallengeResponseAuthentication no'
+
+# set max failed login attempts
+- name: Disable root logins
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '^(#M|M)axAuthTries .*$'
+    replace: 'MaxAuthTries 3'
+
+# reduce max startups
+- name: Reduce max startups
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '^(#M|M)axStartups .*$'
+    replace: 'MaxStartups 3:50:10'
+
+# reduce login grace time
+- name: Reduce login grace time
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '(#L|L)oginGraceTime .*$'
+    replace: 'LoginGraceTime 30'
+
+# limit access to specific users
+- name: "Limit remote user access to {{ userid.stdout }}"
+  lineinfile:
+    path: "{{ sshdconfig }}"
+    line: "AllowUsers {{ userid.stdout }}"
+
+- name: Limit remote user access to wheel
+  lineinfile:
+    path: "{{ sshdconfig }}"
+    line: "AllowUsers wheel"
+
+# use privilege seperation
+#- name: Enable use privilege seperation
+#  replace:
+#    path: "{{ sshdconfig }}"
+#    regexp: '^(#U|U)sePrivilegeSeparation .*$'
+#    replace: 'UsePrivilegeSeparation yes'
+
+# enable strict mode
+- name: Enable strict modes
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '^(#S|S)trictModes .*$'
+    replace: 'StrictModes yes'
+
+# use pam
+- name: Use PAM
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '^(#U|U)sePAM .*$'
+    replace: 'UsePAM yes'
+
+# disable the use of .rhosts and .shosts, just in case
+- name: Ignore rhosts
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '^(#I|I)gnoreRhosts .*$'
+    replace: 'IgnoreRhosts yes'
+
+# disable SSHv1 rhosts/host.equiv
+#- name: Enable strict modes
+#  replace:
+#    path: "{{ sshdconfig }}"
+#    regexp: '^(#R|R)hostsRSAAuthentication .*$'
+#    replace: 'RhostsRSAAuthentication no'
+
+# disable SSHv2 rhosts
+#- name: Enable strict modes
+#  replace:
+#    path: "{{ sshdconfig }}"
+#    regexp: '^(#H|H)ostbasedAuthentication .*$'
+#    replace: 'HostbasedAuthentication no'
+
+# disallow empty passwords
+- name: Disable empty passwords
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '^(#P|P)ermitEmptyPasswords .*$'
+    replace: 'PermitEmptyPasswords no'
+
+# disallow root logins
+- name: Disable root logins
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '^(#P|P)ermitRootLogin .*$'
+    replace: 'PermitRootLogin no' 
+
+- name: Restart sshd.service and daemon-reload
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: sshd

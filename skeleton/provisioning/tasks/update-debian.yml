@@ -31,11 +31,20 @@
     - manpages-dev
     - perl
     - software-properties-common
+    - python3-setuptools
     - python3-pip
     - python3-venv
+    - virtualenv
     - libssl-dev
     - libffi-dev
     - python-dev
+    - apt-transport-https
+    - ca-certificates
+    - software-properties-common
+    - unattended-upgrades
+    - logwatch
+    - fail2ban
+    - ufw
 
 - name: Remove deps no longer required
   apt:

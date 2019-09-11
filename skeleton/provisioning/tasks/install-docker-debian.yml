@@ -1,0 +1,37 @@
+---
+- name: Add docker-ce GPG apt-key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add docker-ce repo
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu "{{ ansible_distribution_release }}" stable
+    state: present
+
+- name: Run apt-get update and install docker-ce
+  apt:
+    update_cache: yes
+    name: docker-ce
+    state: latest
+    
+#- name: Pull hello-world container image
+#  docker_image:
+#    name: hello-world
+#    source: pull
+
+- name: Start docker.service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: "Add user {{ userid.stdout }} to docker group"
+  user:
+    name: "{{ userid.stdout }}"
+    groups: docker
+    append: yes
+
+#- name: Install docker python module
+#  pip:
+#    name: docker

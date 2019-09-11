@@ -1,0 +1,48 @@
+---
+- name: Remove docker if already installed
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+  - docker
+  - docker-client
+  - docker-client-latest
+  - docker-common
+  - docker-latest
+  - docker-latest-logrotate
+  - docker-logrotate
+  - docker-engine
+
+- name: Import official docker-ce yum repository gpg key
+  rpm_key:
+    key: https://download.docker.com/linux/centos/gpg
+    state: present
+
+- name: Add official docker-ce yum repository
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+    force: yes
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install docker-ce
+  yum:
+    name: docker-ce
+    state: present
+    update_cache: yes
+
+- name: Start docker.service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: "Add user {{ userid.stdout }} to docker group"
+  user:
+    name: "{{ userid.stdout }}"
+    groups: docker
+    append: yes
+
+# TODO: Run container hello-world, if successfull should output "Hello from Docker!"

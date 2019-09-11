@@ -36,6 +36,12 @@
     - python36-setuptools
     - python36-pip
     - python36-virtualenv
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+    - yum-cron
+    - logwatch
+    - fail2ban
 
 - name: Upgrade python-pip, force upgrade
   pip:
