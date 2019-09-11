@@ -39,6 +39,7 @@
     - yum-utils
     - device-mapper-persistent-data
     - lvm2
+    - htop
     - yum-cron
     - logwatch
     - fail2ban
