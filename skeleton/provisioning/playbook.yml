@@ -44,6 +44,10 @@
       include_tasks: tasks/install-docker-debian.yml
       when: ansible_os_family == "Debian" or ansible_distribution == "Ubuntu"
 
+    - name: "Run tasks to configure firewalld [CentOS]"
+      include_tasks: tasks/configure-firewalld.yml
+      when: ansible_distribution == "CentOS" or ansible_distribution == "Fedora"
+
     - name: "Run OS specific tasks [CoreOS]"
       include_tasks: tasks/coreos.yml
       when: ansible_os_family == 'CoreOS'
