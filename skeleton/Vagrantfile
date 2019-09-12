@@ -57,7 +57,7 @@ Vagrant.configure("2") do |config|
       trigger.info = "Machine is up!"
       trigger.name = "Please wait while droplet is rebooted..."
       # https://github.com/aidanns/vagrant-reload
-      trigger.run = { :inline => "vagrant reload" }
+#      trigger.run = { :inline => "vagrant reload" }
     end
 
 #    # reboot after provision is complete

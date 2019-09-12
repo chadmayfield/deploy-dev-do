@@ -12,12 +12,12 @@
 #    permanent: yes
 #    icmp_block_inversion: yes
 
-- name: Block ICMP echo requests
-  firewalld:
-    zone: drop
-    state: present
-    permanent: yes
-    icmp_block: echo-request
+#- name: Block ICMP echo requests
+#  firewalld:
+#    zone: drop
+#    state: present
+#    permanent: yes
+#    icmp_block: echo-request
 
 - name: Enable ssh
   firewalld:
