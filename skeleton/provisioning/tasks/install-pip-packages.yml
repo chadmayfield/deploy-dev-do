@@ -1,0 +1,6 @@
+---
+- name: Python-pip: install acsiinema
+  pip:
+    name: asciinema
+    executable: pip3
+    state: latest

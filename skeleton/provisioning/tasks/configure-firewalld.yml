@@ -1,0 +1,32 @@
+---
+- name: Start and enable firewalld.service
+  systemd:
+    name: firewalld.service
+    state: started
+    enabled: yes
+
+#- name: Disable inversion of ICMP blocks
+#  firewalld:
+#    zone: drop
+#    state: present
+#    permanent: yes
+#    icmp_block_inversion: yes
+
+- name: Block ICMP echo requests
+  firewalld:
+    zone: drop
+    state: present
+    permanent: yes
+    icmp_block: echo-request
+
+- name: Enable ssh
+  firewalld:
+    service: ssh
+    permanent: yes
+    state: enabled
+
+- name: restart firewalld and daemon-reload
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: firewalld.service

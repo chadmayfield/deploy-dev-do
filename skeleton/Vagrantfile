@@ -31,9 +31,9 @@ Vagrant.configure("2") do |config|
     config.vm.synced_folder ".", "/vagrant", type: "rsync",
       rsync__exclude: ".git/" ".gitignore" ".vscode"
 
-    # sample provisioning script using shell
-    #config.vm.provision "shell",
-    #  inline: "echo BEGINNING PROVISIONING RUN..."
+    # use shell for provisioning
+    config.vm.provision "shell",
+      inline: "echo BEGINNING PROVISIONING RUN..."
     config.vm.provision :shell, :path => 'scripts/provison.sh'
 
     # install ansible and run playbook
@@ -51,11 +51,21 @@ Vagrant.configure("2") do |config|
       }
     end
 
-    # sample tigger after up
+    # reboot droplet after up
     config.trigger.after :up do |trigger|
-      trigger.name = "Finished Message"
+      trigger.info = "Finished provisioning droplet."
       trigger.info = "Machine is up!"
+      trigger.name = "Please wait while droplet is rebooted..."
+      # https://github.com/aidanns/vagrant-reload
+      trigger.run = { :inline => "vagrant reload" }
     end
+
+#    # reboot after provision is complete
+#    config.trigger.after [:provision] do |trigger|
+#      trigger.name = "Finished provisioning! Please wait while droplet is rebooted."
+#      trigger.name = "Reboot after provisioning"
+#      trigger.run = { :inline => "vagrant reload" }
+#    end
 
     # sample trigger on destroy
     config.trigger.before :destroy do |trigger|

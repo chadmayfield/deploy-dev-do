@@ -43,6 +43,7 @@
     - yum-cron
     - logwatch
     - fail2ban
+    - firewalld
 
 - name: Upgrade python-pip, force upgrade
   pip:

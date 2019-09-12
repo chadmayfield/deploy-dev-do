@@ -18,6 +18,7 @@
           - "OS Family: {{ ansible_os_family }}"
           - "Python Version: {{ ansible_python_version }}"
           - "UUID: {{ ansible_product_uuid }}"
+          - "EXTRA_VARS: {{ ntp_server }}"
           #- "ENV: {{ ansible_env }}"
 
     #### Run specific tasks based on 'ansible_distribution' ####

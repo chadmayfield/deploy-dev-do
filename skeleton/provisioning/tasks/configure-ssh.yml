@@ -18,17 +18,17 @@
     replace: 'PubkeyAuthentication yes'
 
 # disable interactive logins
-#- name: Disable interactive logins (Password Auth) 
-#  replace:
-#    path: "{{ sshdconfig }}"
-#    regexp: '^(#P|P)asswordAuthentication yes'
-#    replace: 'PasswordAuthentication no'
+- name: Disable interactive logins (Password Auth) 
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '^(#P|P)asswordAuthentication .*$'
+    replace: 'PasswordAuthentication no'
 
 #- name: Disable interactive logins (Challenge Response Auth)
-#  replace:
-#    path: "{{ sshdconfig }}"
-#    regexp: '^(#C|C)hallengeResponseAuth.* yes'
-#    replace: 'ChallengeResponseAuthentication no'
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '^(#C|C)hallengeResponseAuth.* yes'
+    replace: 'ChallengeResponseAuthentication no'
 
 # set max failed login attempts
 - name: Disable root logins
@@ -63,11 +63,11 @@
     line: "AllowUsers wheel"
 
 # use privilege seperation
-#- name: Enable use privilege seperation
-#  replace:
-#    path: "{{ sshdconfig }}"
-#    regexp: '^(#U|U)sePrivilegeSeparation .*$'
-#    replace: 'UsePrivilegeSeparation yes'
+- name: Enable use privilege seperation
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '^(#U|U)sePrivilegeSeparation .*$'
+    replace: 'UsePrivilegeSeparation yes'
 
 # enable strict mode
 - name: Enable strict modes
@@ -91,18 +91,18 @@
     replace: 'IgnoreRhosts yes'
 
 # disable SSHv1 rhosts/host.equiv
-#- name: Enable strict modes
-#  replace:
-#    path: "{{ sshdconfig }}"
-#    regexp: '^(#R|R)hostsRSAAuthentication .*$'
-#    replace: 'RhostsRSAAuthentication no'
+- name: Enable strict modes
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '^(#R|R)hostsRSAAuthentication .*$'
+    replace: 'RhostsRSAAuthentication no'
 
 # disable SSHv2 rhosts
-#- name: Enable strict modes
-#  replace:
-#    path: "{{ sshdconfig }}"
-#    regexp: '^(#H|H)ostbasedAuthentication .*$'
-#    replace: 'HostbasedAuthentication no'
+- name: Enable strict modes
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '^(#H|H)ostbasedAuthentication .*$'
+    replace: 'HostbasedAuthentication no'
 
 # disallow empty passwords
 - name: Disable empty passwords
@@ -110,6 +110,20 @@
     path: "{{ sshdconfig }}"
     regexp: '^(#P|P)ermitEmptyPasswords .*$'
     replace: 'PermitEmptyPasswords no'
+
+# disable tcp forwarding
+- name: Disable TCP forwarding
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '^(#A|A)llowTCPForwarding .*$'
+    replace: 'AllowTCPForwarding no'
+
+# disable x forwarding
+- name: Disable X11 forwarding
+  replace:
+    path: "{{ sshdconfig }}"
+    regexp: '^(#X|X)11Forwarding .*$'
+    replace: 'X11Forwarding no'
 
 # disallow root logins
 - name: Disable root logins
